@@ -1,7 +1,7 @@
 name: data_validator
 description: A validation for all kinds of data.
 version: 1.0.0
-author: Nishant Subedi
+author: Nishant Subedi <nishantsubedi1996@gmail.com>
 homepage: https://github.com/nishantsubedi/data_validator
 
 environment:

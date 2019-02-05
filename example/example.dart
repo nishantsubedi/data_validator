@@ -1,26 +1,3 @@
-# data_validator
-
-A simple data validation 
-
-## Getting Started
-
-In your project add the dependency:
-
-```yml
-dependencies:
-  ...
-  data_validator: any
-```
-
-## Usage example
-
-
-```dart
-import 'package:data_validator/data_validator.dart';
-```
-
-
-```dart
 import 'package:data_validator/data_validator.dart';
 
 void main() {
@@ -33,6 +10,3 @@ void main() {
   print(DataValidator.toBoolean('true'));
   print(DataValidator.isJSON('{"name" : "John Doe"}'));
 }
-
-
-```

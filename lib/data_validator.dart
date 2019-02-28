@@ -525,6 +525,21 @@ class DataValidator {
     return true;
   }
 
+  /// Check if String is a valid CPF
+  /// CPF is equivalent a SSN on Brazil
+  static bool isValidCpf(String cpf) {
+    if (cpf.length != 11) return false;
+    if (cpf.split('').toSet().length == 1) return false;
+
+    final nineDigits = cpf.substring(0, 9);
+    final firstVerificationDigit = _calculateNextVerificationCpfDigit(nineDigits);
+    final secondVerificationDigit = _calculateNextVerificationCpfDigit(nineDigits + firstVerificationDigit);
+    final cpfCalculated = nineDigits + firstVerificationDigit + secondVerificationDigit;
+
+    if (cpf != cpfCalculated) return false;
+    else return true;
+  }
+
   /// convert the input to a date, or null if the input is not a date
   static DateTime toDate(String str) {
     try {
@@ -681,4 +696,17 @@ Map _merge(Map obj, defaults) {
   }
   defaults.forEach((key, val) => obj.putIfAbsent(key, () => val));
   return obj;
+}
+
+String _calculateNextVerificationCpfDigit(String cpf) {
+  int sum = 0;
+  int j = cpf.length + 1;
+
+  cpf.split('').forEach((digit) {
+    sum += (int.tryParse(digit) ?? 0) * j;
+    j--;
+  });
+
+  final digit = 11 - (sum % 11);
+  return ((digit > 9) ? 0 : digit).toString();
 }
